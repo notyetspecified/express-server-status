@@ -69,7 +69,8 @@ module.exports = function(app, options) {
     }
 
     var minute = (new Date).getMinutes();
-    server.started_at = moment(uptime_start);
+    server.startedat = uptime_start.getTime();
+    server.startedat_human = moment(uptime_start).format('D/M/YY H:mm');
     server.uptime = Math.round((new Date() - uptime_start) / 1000);
     server.uptime_human = moment(uptime_start).fromNow();
     server.env = process.env.NODE_ENV;
