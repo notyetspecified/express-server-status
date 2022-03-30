@@ -9,13 +9,6 @@ for(var i=0;i<60;i++)
   requests_per_minute[i] = 0;
 
 var uptime_start = new Date();
-var exec = require('child_process').exec;
-var git_data = { };
-exec(__dirname+'/lib/get_git_data.sh', function(err, res, stderr) {
-  var cols = res.trim().split(',');
-  git_data.branch = cols[0];
-  git_data.sha = cols[1] && cols[1].substr(0,7);
-});
 
 var sum = function(arr, from, length) {
   var total = 0;
@@ -92,12 +85,11 @@ module.exports = function(app, options) {
       hostname: os.hostname()
     };
 
-    // requests.per_minute = requests_per_minute;
     requests.last_minute = sum(requests_per_minute, minute, 1);
     requests.last_5mn_avg = sum(requests_per_minute, minute, 5);
     requests.last_15mn_avg = average(requests_per_minute, 0, 15);
     server.requests = requests;
-    const status = { server, git: git_data, node, system };
+    const status = { server, node, system };
 
     res.send(status);
 
