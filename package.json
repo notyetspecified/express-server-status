@@ -1,14 +1,13 @@
 {
   "name": "@notyetspecified/express-server-status",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Get a quick overview of the status of an express server (uptime, version, stats)",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "npm test",
-    "publish": "npm publish --access public"
+    "test": "npm test"
   },
   "repository": {
     "type": "git",
